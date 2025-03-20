@@ -1,4 +1,5 @@
-import Button from "@/components/ui/button";
+"use client";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -8,39 +9,46 @@ import {
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useState } from "react";
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState("html");
+
   return (
-    <div className="flex justify-center items-center h-screen bg-white ">
+    <div className="flex justify-center items-center h-screen  ">
       <Dialog>
         <DialogTrigger asChild>
-          <Button>Code Export</Button>
+          <Button className="font-sans">EXPORT CODE</Button>
         </DialogTrigger>
-        <DialogContent className="  bg-[#1A1A1A] border-[#2A2A2A]">
+        <DialogContent className="font-kumbh-sans rounded-xl border-2 border-[#1f1f1f] ">
           <DialogHeader>
-            <DialogTitle className="text-xl text-white">
+            <DialogTitle className="text-xl tracking-wide mb-0.5 font-kumbh-sans font-semibold text-white">
               Code Export
             </DialogTitle>
-            <p className="text-sm text-[#D1D1D1]">
+            <p className="text-md font-kumbh-sans font-light text-[#D1D1D1]">
               Manage how you download your website's code.
             </p>
           </DialogHeader>
-          <Tabs defaultValue="html" className="mt-4 bg-black/40 rounded-xl p-2">
-            <TabsList className="grid w-full grid-cols-2 bg-[#2A2A2A] p-1 rounded-md">
+          <Tabs
+            defaultValue="html"
+            className="mt-4 bg-black/40 rounded-xl p-2"
+            onValueChange={(value) => setActiveTab(value)}
+          >
+            <TabsList className="grid  w-full grid-cols-2 bg-white/10 p-0.5 rounded-lg">
               <TabsTrigger
                 value="html"
-                className="rounded-md px-3 py-1.5 text-[#D1D1D1] data-[state=active]:bg-[#1A1A1A] data-[state=active]:text-white"
+                className="rounded-md font-kumbh-sans cursor-pointer font-normal tracking-wide px-3 py-2 text-white data-[state=active]:bg-[#1A1A1A] data-[state=active]:text-white"
               >
                 HTML & CSS
               </TabsTrigger>
               <TabsTrigger
                 value="nextjs"
-                className="rounded-md px-3 py-1.5 text-[#D1D1D1] data-[state=active]:bg-[#1A1A1A] data-[state=active]:text-white"
+                className="rounded-md font-kumbh-sans cursor-pointer font-normal tracking-wide px-3 py-1.5 text-white data-[state=active]:bg-[#1A1A1A] data-[state=active]:text-white"
               >
                 Next.JS
               </TabsTrigger>
             </TabsList>
-            <TabsContent value="html" className="mt-4 space-y-4">
+            <TabsContent value="html" className="mt-4 px-3 pb-4 space-y-4">
               <div className="flex items-center justify-between ">
                 <div className="flex items-center  space-x-2">
                   <svg
@@ -59,19 +67,21 @@ export default function Home() {
                     />
                   </svg>
                   <div className="space-y-1">
-                    <h4 className="text-sm font-medium leading-none text-white">
+                    <h4 className="text-sm font-light leading-none text-[#FBFBFB]">
                       Export as HTML & CSS
                     </h4>
                   </div>
                 </div>
-                <Button>Zipped</Button>
+                <span className="text-sm font-kumbh-sans font-light tracking-wide  text-white bg-white/10 px-4 py-1 rounded-full">
+                  Zipped
+                </span>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-4 pl-1">
                 <div className="flex items-center space-x-2">
                   <Checkbox id="assets-html" defaultChecked />
                   <label
                     htmlFor="assets-html"
-                    className="text-sm font-medium text-[#D1D1D1]"
+                    className="text-sm font-normal tracking-wide text-[#AFAFAF]"
                   >
                     Include assets (images, styles, fonts, etc.)
                   </label>
@@ -80,15 +90,14 @@ export default function Home() {
                   <Checkbox id="custom-code-html" defaultChecked />
                   <label
                     htmlFor="custom-code-html"
-                    className="text-sm font-medium text-[#D1D1D1]"
+                    className="text-sm font-normal tracking-wide text-[#AFAFAF]"
                   >
                     Include custom code
                   </label>
                 </div>
               </div>
-              <Button>Download HTML CSS Project</Button>
             </TabsContent>
-            <TabsContent value="nextjs" className="mt-4 space-y-4">
+            <TabsContent value="nextjs" className="mt-4   px-3 pb-4 space-y-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
                   <svg
@@ -149,19 +158,21 @@ export default function Home() {
                     />
                   </svg>
                   <div className="space-y-1">
-                    <h4 className="text-sm font-medium leading-none text-white">
+                    <h4 className="text-sm font-light leading-none text-[#FBFBFB]">
                       Export as Next.JS Project
                     </h4>
                   </div>
                 </div>
-                <Button>Zipped</Button>
+                <span className="text-sm font-kumbh-sans font-light tracking-wide text-white bg-white/10 px-4 py-1 rounded-full">
+                  Zipped
+                </span>{" "}
               </div>
-              <div className="space-y-4">
+              <div className="space-y-4 pl-1 ">
                 <div className="flex items-center space-x-2">
                   <Checkbox id="app-dir" defaultChecked />
                   <label
                     htmlFor="app-dir"
-                    className="text-sm font-medium text-[#D1D1D1]"
+                    className="text-sm font-normal tracking-wide text-[#AFAFAF]"
                   >
                     Use 'app' directory (NextJS v13+)
                   </label>
@@ -170,7 +181,7 @@ export default function Home() {
                   <Checkbox id="assets" defaultChecked />
                   <label
                     htmlFor="assets"
-                    className="text-sm font-medium text-[#D1D1D1]"
+                    className="text-sm font-normal tracking-wide text-[#AFAFAF]"
                   >
                     Include assets locally (images, styles, fonts, etc.)
                   </label>
@@ -179,15 +190,21 @@ export default function Home() {
                   <Checkbox id="custom-code" defaultChecked />
                   <label
                     htmlFor="custom-code"
-                    className="text-sm font-medium text-[#D1D1D1]"
+                    className="text-sm font-normal tracking-wide text-[#AFAFAF]"
                   >
                     Include custom code
                   </label>
                 </div>
               </div>
-              <Button>Download Next.JS Project</Button>
             </TabsContent>
           </Tabs>
+          <div className="mt-4 flex justify-center items-center w-full">
+            <Button className="font-kumbh-sans font-normal tracking-wide">
+              {activeTab === "html"
+                ? "Download HTML CSS Project"
+                : "Download Next JS Project"}
+            </Button>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
